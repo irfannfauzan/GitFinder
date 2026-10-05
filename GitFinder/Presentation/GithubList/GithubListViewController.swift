@@ -10,9 +10,9 @@ import UIKit
 class GithubListViewController: UIViewController {
     
     private let githubs: [Github] = [
-        Github(Id: 1, Login: "id 1", nodeId: "node id 1", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
-        Github(Id: 2, Login: "id 2", nodeId: "node id 2", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
-        Github(Id: 3, Login: "id 3", nodeId: "node id 3", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
+        Github(id: 1, login: "id 1", nodeId: "node id 1", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
+        Github(id: 2, login: "id 2", nodeId: "node id 2", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
+        Github(id: 3, login: "id 3", nodeId: "node id 3", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
     ]
     
     let tableView = UITableView()
@@ -26,8 +26,13 @@ class GithubListViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(GithubCells.self, forCellReuseIdentifier: GithubCells.reuseIdentifier)
         
+        let safe = view.safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
-            //
+            tableView.topAnchor.constraint(equalTo: safe.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
     }
@@ -40,8 +45,14 @@ extension GithubListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //
-        return UITableViewCell()
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GithubCells.reuseIdentifier, for: indexPath) as? GithubCells
+        else { return UITableViewCell() }
+        
+        let github = githubs[indexPath.row]
+        cell.configure(with: github)
+        
+        return cell
     }
 }
 

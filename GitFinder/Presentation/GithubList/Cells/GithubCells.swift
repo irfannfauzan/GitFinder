@@ -72,7 +72,9 @@ class GithubCells: UITableViewCell {
         ])
     }
     
-    func configure(){
+    func configure(with github: Github) {
         //...
+        titleLabel.text = github.login
+        subtitleLabel.text = github.nodeId
     }
 }
