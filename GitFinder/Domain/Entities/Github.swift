@@ -6,8 +6,8 @@
 //
 
 struct Github: Codable {
-    let Id: Int
-    let Login: String
+    let id: Int
+    let login: String
     let nodeId: String
     let avatarUrl: String
 }
