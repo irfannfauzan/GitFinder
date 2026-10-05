@@ -11,6 +11,8 @@ class GithubCells: UITableViewCell {
     
     static let reuseIdentifier: String = "GithubCell"
     
+    private var imageLoadTask: Task<Void, Never>?
+    
     private let imageViews: UIImageView = {
         let images = UIImageView()
         images.contentMode = .scaleAspectFit
@@ -49,6 +51,7 @@ class GithubCells: UITableViewCell {
         let stack = UIStackView(arrangedSubviews: [imageViews, childStack])
         stack.axis = .horizontal
         stack.spacing = 8
+        stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -76,5 +79,20 @@ class GithubCells: UITableViewCell {
         //...
         titleLabel.text = github.login
         subtitleLabel.text = github.nodeId
+        loadImage(from: github.avatarUrl)
+    }
+
+    private func loadImage(from url: URL?) {
+        imageLoadTask?.cancel()
+        guard let url else { return }
+
+        imageLoadTask = Task { [weak self] in
+            guard let (data, _) = try? await URLSession.shared.data(from: url),
+                  let image = UIImage(data: data),
+                  !Task.isCancelled else { return }
+            await MainActor.run {
+                self?.imageViews.image = image
+            }
+        }
     }
 }

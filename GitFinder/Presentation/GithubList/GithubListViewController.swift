@@ -10,9 +10,9 @@ import UIKit
 class GithubListViewController: UIViewController {
     
     private let githubs: [Github] = [
-        Github(id: 1, login: "id 1", nodeId: "node id 1", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
-        Github(id: 2, login: "id 2", nodeId: "node id 2", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
-        Github(id: 3, login: "id 3", nodeId: "node id 3", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
+        Github(id: 1, login: "id 1", nodeId: "node id 1", avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/1?v=4")),
+        Github(id: 2, login: "id 2", nodeId: "node id 2", avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/1?v=4")),
+        Github(id: 3, login: "id 3", nodeId: "node id 3", avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/1?v=4")),
     ]
     
     private let loadingIndicator: UIActivityIndicatorView = {
@@ -35,12 +35,19 @@ class GithubListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(tableView)
+        view.backgroundColor = .white
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(GithubCells.self, forCellReuseIdentifier: GithubCells.reuseIdentifier)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = .clear
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude))
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(tableView)
+        view.addSubview(loadingIndicator)
+        view.addSubview(errorMesages)
         
         let safe = view.safeAreaLayoutGuide
         
