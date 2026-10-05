@@ -15,6 +15,22 @@ class GithubListViewController: UIViewController {
         Github(id: 3, login: "id 3", nodeId: "node id 3", avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4"),
     ]
     
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
+    private let errorMesages: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -33,6 +49,14 @@ class GithubListViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            errorMesages.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorMesages.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            errorMesages.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+
         ])
         
     }
