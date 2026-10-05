@@ -66,6 +66,14 @@ class GithubListViewController: UIViewController {
 
         ])
         
+        Task {
+            let apiClient = ApiClient()
+            let repository = GithubRepository(apiClient: apiClient)
+            let useCase = FetchGithubUseCase(repository: repository)
+            let result = try await useCase.execute()
+            print(result)
+        }
+        
     }
 }
 
