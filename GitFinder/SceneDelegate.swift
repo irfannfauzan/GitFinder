@@ -18,11 +18,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let view = GithubListViewController()
-        let navigationController = UINavigationController(rootViewController: view)
+        let apiClient = ApiClient()
+        let repository = GithubRepository(apiClient: apiClient)
+        let fetchGithubUseCase = FetchGithubUseCase(repository: repository)
+
+        let githubListViewController = GithubListModuleBuilder.build(fetchGithubUseCase: fetchGithubUseCase)
+        let navigationController = UINavigationController(rootViewController: githubListViewController)
+
         window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
