@@ -12,7 +12,4 @@ A small app that shows a list of GitHub usernames, pulled from the public GitHub
 
 ## Screenshot
 
-<p align="center">
-  <img src="Screenshots/arch.png" width="48%">
-  <img src="Screenshots/list.png" width="25%">
-</p>
+![Architecture](Screenshots/arch.png) ![List](Screenshots/list.png)
