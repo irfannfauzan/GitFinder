@@ -1,6 +1,6 @@
 # GitFinder
 
-A small app that shows a list of GitHub usernames, pulled from the public GitHub API. I built it to practice VIPER on top of Clean Architecture.
+A small app that shows a list of GitHub usernames, pulled from the public GitHub API. I built it to practice VIPER + Clean Architecture.
 
 
 ## Tech stack
