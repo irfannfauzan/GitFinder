@@ -51,8 +51,8 @@ class GithubDetailViewController: UIViewController {
         let images = UIImageView()
         images.contentMode = .scaleAspectFit
         images.translatesAutoresizingMaskIntoConstraints = false
-        images.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        images.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        images.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        images.widthAnchor.constraint(equalToConstant: 200).isActive = true
         return images
     }()
 

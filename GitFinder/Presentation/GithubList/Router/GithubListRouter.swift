@@ -25,16 +25,3 @@ final class GithubListRouter: GithubListRouterProtocol {
         viewController?.navigationController?.pushViewController(detail, animated: true)
     }
 }
-//
-//final class GithubListRouter: GithubListRouterProtocol {
-//
-//    weak var viewController: UIViewController?
-//
-//    func navigateToDetail(of github: Github) {
-//        // placeholder, belum ada screen detail
-//        print("navigate to detail: \(github.login)")
-//        let detail = GithubDetailViewController()
-//        viewController?.navigationController?.pushViewController(detail, animated: true)
-//        
-//    }
-//}
