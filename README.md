@@ -10,10 +10,15 @@ A small app that shows a list of GitHub usernames, pulled from the public GitHub
 - URLSession with async/await
 - UITableView with a custom cell
 
-## Screenshot
+## Architecture
 
 <p align="center">
   <img src="Screenshots/arch.png" height="520">
+</p>
+
+## Screenshot
+
+<p align="center">
   <img src="Screenshots/list.png" height="520">
   <img src="Screenshots/detail.png" height="520">
   <img src="Screenshots/openprofile.png" height="520">
