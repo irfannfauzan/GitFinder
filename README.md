@@ -13,7 +13,7 @@ A small app that shows a list of GitHub usernames, pulled from the public GitHub
 ## Architecture
 
 <p align="center">
-  <img src="Screenshots/arch.png" height="520">
+  <img src="Screenshots/architecture.png" height="520">
 </p>
 
 ## Screenshot
