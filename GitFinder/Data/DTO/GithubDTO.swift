@@ -12,12 +12,14 @@ struct GithubDTO: Codable {
     let login: String
     let nodeId: String
     let avatarUrl: String?
+    let htmlUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case id
         case login
         case nodeId = "node_id"
         case avatarUrl = "avatar_url"
+        case htmlUrl = "html_url"
     }
 }
 
@@ -27,7 +29,8 @@ extension GithubDTO {
             id: id,
             login: login,
             nodeId: nodeId,
-            avatarUrl: avatarUrl.flatMap(URL.init(string:))
+            avatarUrl: avatarUrl.flatMap(URL.init(string:)),
+            htmlUrl: htmlUrl.flatMap(URL.init(string:))
         )
     }
 }

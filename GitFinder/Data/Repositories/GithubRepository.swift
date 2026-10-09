@@ -18,4 +18,9 @@ final class GithubRepository: GithubRepositoryProtocol {
         let result = response.map { $0.toDomain() }
         return result
     }
+    
+    func getGithubDetail(id: Int) async throws -> Github {
+        let response: GithubDTO = try await apiClient.get(.getGithubDetail(id: id))
+        return response.toDomain()
+    }
 }

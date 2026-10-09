@@ -7,4 +7,5 @@
 
 protocol GithubRepositoryProtocol {
     func getGithub() async throws -> [Github]
+    func getGithubDetail(id: Int) async throws -> Github
 }

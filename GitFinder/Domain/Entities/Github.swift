@@ -12,4 +12,5 @@ struct Github: Equatable, Hashable {
     let login: String
     let nodeId: String
     let avatarUrl: URL?
+    let htmlUrl: URL?
 }

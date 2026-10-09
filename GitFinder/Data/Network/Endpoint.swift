@@ -9,13 +9,18 @@ import Foundation
 
 enum Endpoint {
     case getGithub
-    
+    case getGithubDetail(id: Int)
+
     private static let baseURL = "https://api.github.com/users"
     
     func url() -> URL? {
         switch self {
         case .getGithub:
             let components = URLComponents(string: Self.baseURL)
+            return components?.url
+            
+        case .getGithubDetail(let id):
+            let components = URLComponents(string: "\(Self.baseURL)/\(id)")
             return components?.url
         }
     }

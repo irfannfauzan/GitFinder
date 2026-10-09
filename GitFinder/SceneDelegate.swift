@@ -21,8 +21,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let apiClient = ApiClient()
         let repository = GithubRepository(apiClient: apiClient)
         let fetchGithubUseCase = FetchGithubUseCase(repository: repository)
+        let fetchGithubDetailUseCase = FetchGithubDetailUseCase(repository: repository)
 
-        let githubListViewController = GithubListModuleBuilder.build(fetchGithubUseCase: fetchGithubUseCase)
+        let githubListViewController = GithubListModuleBuilder.build(
+                fetchGithubUseCase: fetchGithubUseCase,
+                makeDetailViewController: { id in
+                    GithubDetailModuleBuilder.build(
+                        idGithub: id,
+                        fetchGithubDetailUseCase: fetchGithubDetailUseCase
+                    )
+                }
+            )
+        
         let navigationController = UINavigationController(rootViewController: githubListViewController)
 
         window.rootViewController = navigationController
